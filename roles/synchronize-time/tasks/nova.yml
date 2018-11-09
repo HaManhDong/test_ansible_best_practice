@@ -1,0 +1,19 @@
+---
+#- name: Check nova upgrade status
+#  become: true
+#  command: docker exec -t nova_api nova-status upgrade check
+#  register: nova_upgrade_check_stdout
+#  ignore_errors: yes
+#  when: inventory_hostname == groups['nova-api'][0]
+
+- debug:
+    msg: "value in inclue first: {{ check_boolean }}"
+
+#- name: Upgrade status check result
+#  fail:
+#    msg:
+#      - "There was an upgrade status check warning or failure!"
+#      - "See the detail at https://docs.openstack.org/nova/latest/cli/nova-status.html#nova-status-checks"
+#  vars:
+#    first_nova_api_host: "{{ groups['nova-api'][0] }}"
+#  when: hostvars[first_nova_api_host]['nova_upgrade_check_stdout'] != 0

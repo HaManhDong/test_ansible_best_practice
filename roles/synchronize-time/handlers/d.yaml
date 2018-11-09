@@ -1,0 +1,14 @@
+---
+- name: d_docker_handler_111
+  vars:
+    not_run_all: "'true' if abc | bool else 'false'"
+    donghm: "dz"
+  debug:
+    msg: "{{ donghm }}"
+
+- name: d_docker_handler_222
+  vars:
+    not_run_all: true
+    donghm: "dz2222"
+  debug:
+    msg: "Ok Handler 22"

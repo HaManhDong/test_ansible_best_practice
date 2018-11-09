@@ -1,0 +1,18 @@
+---
+- name: Copying Dockerfile
+  template:
+    src: Dockerfile.j2
+    dest: /home/kolla/app/Dockerfile
+
+- name: Build docker image named friendlyhello
+  docker_image:
+    path: /home/kolla/app/
+    name: friendlyhello
+    state: present
+
+- name: Run flask app container
+  docker_container:
+    name: flask_app
+    image: friendlyhello
+    ports: "0.0.0.0:4000:80"
+    state: started

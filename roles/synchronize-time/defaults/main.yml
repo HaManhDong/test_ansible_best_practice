@@ -1,0 +1,55 @@
+---
+#
+#check_boolean: "false"
+#
+
+kolla_internal_vip_address: "192.168.122.250"
+
+ratio: 0.4
+
+a: "true"
+b: "true"
+
+#
+#test: "{{ d ~ '111' if abc | bool else q }}"
+#
+#nova_services:
+#  nova-api:
+#    container_name: "nova_api"
+#    group: "nova-api"
+#    enabled: "{{ d ~ '111' if abc else 'q' }}"
+#    privileged: True
+##  nova-conductor:
+##    container_name: "nova_conductor"
+##    group: "nova-conductor"
+##    enabled: True
+##    privileged: True
+#  nova-compute:
+#    container_name: "nova_compute"
+#    group: "compute"
+#    enabled: "no"
+#    environment:
+#      LIBGUESTFS_BACKEND: "direct"
+#    privileged: True
+#    ipc_mode: "host"
+#  nova-compute-ironic:
+#    container_name: "nova_compute_ironic"
+#    group: "compute"
+#    enabled: False
+#    environment:
+#      LIBGUESTFS_BACKEND: "direct"
+#    privileged: True
+#    ipc_mode: "host"
+#
+#neutron_services:
+#  neutron-server:
+#    container_name: "neutron_server"
+#    enabled: true
+#    group: "neutron-server"
+#    host_in_groups: "{{ inventory_hostname in groups['neutron-server'] }}"
+#
+#neutron_rolling_upgrade_services: ["neutron", "neutron-fwaas", "neutron-vpnaas"]
+#
+#aaa:
+#  - "1d"
+#  - "2d"

@@ -1,0 +1,41 @@
+---
+- name: Check pending contract scripts
+  become: true
+  command: "docker exec -t neutron_server neutron-db-manage --subproject {{ item }} has_offline_migrations"
+  register: neutron_check_contract_db_stdout
+  with_items: "{{ neutron_rolling_upgrade_services }}"
+  when: inventory_hostname == groups['neutron-server'][0]
+
+
+
+#- debug:
+#    msg: "{{ dong }}"
+#  vars:
+#    neutron_server: "{{ neutron_services['neutron-server'] }}"
+#    first_neutron_server_host: "{{ groups[neutron_server.group][0] }}"
+#    results_of_check_pending_contract_scripts: "{{ hostvars[first_neutron_server_host]['neutron_check_contract_db_stdout'] }}"
+#    filter_rc: "results[?rc!=`0`]"
+#    dong: "{{ results_of_check_pending_contract_scripts | json_query(filter_rc) }}"
+#  when: dong|length > 0
+
+#- debug:
+#    msg: "{{ neutron_check_contract_db_stdout }}"
+#  when: inventory_hostname == groups['neutron-server'][0]
+
+- name: Stopping all neutron-server for contract db
+  vars:
+    neutron_server: "{{ neutron_services['neutron-server'] }}"
+    first_neutron_server_host: "{{ groups[neutron_server.group][0] }}"
+    results_of_check_pending_contract_scripts: "{{ hostvars[first_neutron_server_host]['neutron_check_contract_db_stdout'] }}"
+    filter_rc: "results[?rc==`0`]"
+    is_stop_neutron_server: "{{ results_of_check_pending_contract_scripts | json_query(filter_rc) }}"
+  become: true
+  debug:
+    msg: "Stopping ...."
+#  kolla_docker:
+#    action: "stop_container"
+#    common_options: "{{ docker_common_options }}"
+#    name: "{{ neutron_server.container_name }}"
+  when:
+    - is_stop_neutron_server|length > 0
+    - neutron_server.host_in_groups | bool

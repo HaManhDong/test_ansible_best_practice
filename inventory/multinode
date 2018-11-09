@@ -1,0 +1,31 @@
+[nova-api]
+kolla ansible_user=kolla ansible_password=kolla ansible_become=true ansible_sudo_pass=kolla
+compute2 ansible_user=kolla ansible_password=kolla ansible_become=true ansible_sudo_pass=kolla
+compute1 ansible_user=kolla ansible_password=kolla become=true ansible_sudo_pass=kolla
+
+[nova-conductor]
+#kolla ansible_user=kolla ansible_password=kolla ansible_become=true ansible_sudo_pass=kolla
+#kolla02 ansible_user=kolla ansible_password=kolla ansible_become=true ansible_sudo_pass=kolla
+#compute1 ansible_user=kolla ansible_password=kolla become=true ansible_sudo_pass=kolla
+
+
+[compute]
+#compute1 ansible_user=kolla ansible_password=kolla become=true ansible_sudo_pass=kolla
+
+[nova-compute-ironic:children]
+nova-api
+
+#[chrony_server]
+#kolla ansible_user=kolla ansible_password=kolla ansible_become=true ansible_sudo_pass=kolla
+
+#[control]
+#kolla ansible_user=kolla ansible_password=kolla ansible_become=true ansible_sudo_pass=kolla
+#kolla02 ansible_user=kolla ansible_password=kolla ansible_become=true ansible_sudo_pass=kolla
+
+
+#[compute]
+#compute1 ansible_user=kolla ansible_password=kolla become=true ansible_sudo_pass=kolla
+
+[neutron-server]
+#kolla ansible_user=kolla ansible_password=kolla ansible_become=true ansible_sudo_pass=kolla
+#kolla02 ansible_user=kolla ansible_password=kolla ansible_become=true ansible_sudo_pass=kolla

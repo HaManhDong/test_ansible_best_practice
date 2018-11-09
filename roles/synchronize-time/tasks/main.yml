@@ -1,0 +1,24 @@
+---
+- name: Task 111
+  changed_when: true
+  vars:
+    donghm: "dz"
+    not_run_all: "true"
+    serial_ratio: "{{ ratio }}"
+  debug:
+    msg: "Yeah, task 1111 was run!!!"
+  notify:
+    - handler_111
+
+- name: Flush handlers
+  meta: flush_handlers
+
+- name: Task 222
+  changed_when: true
+  vars:
+    donghm: "dz"
+    not_run_all: "false"
+    serial_ratio: "{{ ratio }}"
+  debug:
+    msg: "{{ not_run_all }}"
+

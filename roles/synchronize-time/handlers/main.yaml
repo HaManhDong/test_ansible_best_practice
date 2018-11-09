@@ -1,0 +1,45 @@
+---
+- name: handler_111
+  vars:
+    not_run_all: "{{'True' if a == 'true' else 'false'}}"
+    serial_ratio: "0.7"
+  debug:
+    msg: "{{ serial_ratio }}"
+
+- name: handler_222
+  vars:
+    not_run_all: "{{'False' if a == 'true' else 'false'}}"
+    donghm: "dz2222"
+  debug:
+    msg: "Ok Handler 222222"
+
+
+#- name: Restart nova-conductor container
+#  vars:
+#    service_name: "nova-conductor"
+#    service: "{{ nova_services[service_name] }}"
+#  debug:
+#    msg: "Restart {{ service_name }}"
+##  when:
+##    - inventory_hostname in groups[service.group]
+##    - service.enabled | bool
+#
+#- name: Restart nova-api container
+#  vars:
+#    service_name: "nova-api"
+#    service: "{{ nova_services[service_name] }}"
+#  debug:
+#    msg: "Restart {{ service_name }}"
+#  when:
+#    - inventory_hostname in groups[service.group]
+#    - service.enabled | bool
+#
+#- name: Restart nova-compute container
+#  vars:
+#    service_name: "nova-compute"
+#    service: "{{ nova_services[service_name] }}"
+#  debug:
+#    msg: "Restart {{ service_name }}"
+#  when:
+#    - inventory_hostname in groups[service.group]
+#    - service.enabled | bool
